@@ -1,17 +1,15 @@
 public class Partido {
+
+    private Equipo equipo1;
+    private Equipo equipo2;
     private int golesEquipo1;
     private int golesEquipo2;
-    public String ResultadoEnum(){
-        if (golesEquipo1 > golesEquipo2){
-            return "Gana_equipo1";
-        } else if (golesEquipo1 < golesEquipo2){
-            return "Gana_equipo2";
-        } else{
-            return "Empate";
-        }
+
+    public Partido(String nombre1, String nombre2, String descripcion1,  String descripcion2){
+        equipo1 = new Equipo(nombre1, descripcion1);
+        equipo2 = new Equipo(nombre2, descripcion2);
     }
-    public static void main(String[] args) {
-        Equipo equipo1 = new Equipo();
-        Equipo equipo2 = new Equipo();
-    }
+
+    //Aún falta implementar el método resultado..
+
 }

@@ -1,6 +1,10 @@
 public class Pronostico {
-    public static void main(String[] args) {
-        Partido partido = new Partido();
-        String resultado = partido.ResultadoEnum();
+    private Partido partido;
+    private ResultadoEnum resultado;
+
+    public Pronostico(Partido partido){
+        this.partido = partido;
     }
+
+
 }

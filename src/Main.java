@@ -1,18 +1,10 @@
-import java.util.Scanner;
-
 public class Main {
     public static void main(String[] args) {
-        System.out.println("PRONÓSTICOS DEPORTIVOS");
 
-        Scanner entrada = new Scanner(System.in);
-        System.out.println("¿Desea jugar una ronda?");
-        String opcion = entrada.nextLine();
-        int contador = 0;
+        Partido partido = new Partido("nombre de equipo 1", "nombre de equipo 2", "descripcion de equip1", "descripcion de equip2");
+        Pronostico pronostico = new Pronostico(partido);
+        Ronda ronda = new Ronda(partido, 1, 2);
 
-        while(opcion.contains("Ss") ){
-            contador += 1;
-            Ronda ronda = new Ronda();
-            ronda.setNro(contador);
-        }
+        //Falta desarrollar resultadoEnum
     }
 }

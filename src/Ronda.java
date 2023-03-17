@@ -1,13 +1,12 @@
 public class Ronda {
-    private int nro;
-    public void setNro(int nro) {
-        this.nro = nro;
+    String nro;
+    Partido partidos;
+
+    public Ronda(Partido partidos, int golesEquipo1, int golesEquipo2){
+        this.partidos = partidos;
     }
-    public static void main(String[] args) {
-        Partido[] partidos = new Partido[2];
 
-        for (Partido i : partidos){
-
-        }
+    public void puntos(){
+        return; // este metodo tiene que ser un void, pero me salta error si le pongo int sin devolver algo.
     }
 }
