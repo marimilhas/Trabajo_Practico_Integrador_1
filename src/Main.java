@@ -11,8 +11,5 @@ public class Main {
 
         resultados.resultado(pronostico.buscarPronostico("equipo1"), pronostico.buscarPronostico("equipo2"), ronda.puntos("equipo1"), ronda.puntos("equipo2"));
 
-
-        pronostico.buscarPronostico("equipo1");
-
     }
 }
