@@ -1,13 +1,19 @@
 public class Ronda {
-    private int nro;
-    public void setNro(int nro) {
-        this.nro = nro;
+    //private String nro;
+    private Partido[] partidos;
+
+    public Ronda(Partido[] partidos){
+        this.partidos = partidos;
     }
-    public static void main(String[] args) {
-        Partido[] partidos = new Partido[2];
-
-        for (Partido i : partidos){
-
+    public int obtener_puntaje(int cantidad_partidos, Pronostico[] pronosticos){
+        int puntaje = 0;
+        for (int i = 0; i < cantidad_partidos; i++){
+            String resultado_pronostico = pronosticos[i].resultado;
+            String resultado_partido = Funciones.calcular_resultado_partido(partidos[i]);
+            if (resultado_pronostico.equals(resultado_partido)){
+                puntaje += 1;
+            }
         }
+        return puntaje;
     }
 }

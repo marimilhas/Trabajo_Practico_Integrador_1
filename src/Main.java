@@ -1,18 +1,44 @@
-import java.util.Scanner;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
 
 public class Main {
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IOException {
         System.out.println("PRONÓSTICOS DEPORTIVOS");
+        String opcion = Funciones.validar_letra("¿Desea jugar una ronda? (S - N): ", "S", "N");
 
-        Scanner entrada = new Scanner(System.in);
-        System.out.println("¿Desea jugar una ronda?");
-        String opcion = entrada.nextLine();
-        int contador = 0;
+        if (opcion.equals("S")){
+            System.out.println("\n↓ Ingrese los siguientes datos ↓");
+            Path ruta_pronosticos = Funciones.validar_archivo("Ruta del archivo con sus pronósticos: ");
+            Path ruta_resultados = Funciones.validar_archivo("Ruta del archivo con los resultados: ");
 
-        while(opcion.contains("Ss") ){
-            contador += 1;
-            Ronda ronda = new Ronda();
-            ronda.setNro(contador);
+            int cantidad_partidos = (Files.readAllLines(ruta_resultados)).size();
+
+            Pronostico[] pronosticos = new Pronostico[cantidad_partidos];
+            for (int i = 0; i < cantidad_partidos; i++){
+                pronosticos[i] = Funciones.crear_pronostico(ruta_pronosticos, i);
+            }
+
+            Partido[] partidos = new Partido[cantidad_partidos];
+            for (int i = 0; i < cantidad_partidos; i++){
+                partidos[i] = Funciones.crear_partido(ruta_resultados, i);
+            }
+
+            Ronda ronda = new Ronda(partidos);
+            int puntaje = ronda.obtener_puntaje(cantidad_partidos, pronosticos);
+
+            System.out.println("\nCargando...");
+            try {
+                Thread.sleep(3000);
+            } catch (InterruptedException e) {
+                throw new RuntimeException(e);
+            }
+            System.out.println("Puntaje obtenido --> " + puntaje);
+
         }
+
+        System.out.println("\nHasta luego!");
     }
 }
+//Deberíamos controlar que la cantidad de pronosticos coincida con la cantidad de partidos?
+//Deberíamos controlar la cantidad de datos en los archivos?
