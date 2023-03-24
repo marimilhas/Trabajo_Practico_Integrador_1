@@ -24,21 +24,12 @@ public class Main {
                 partidos[i] = Funciones.crear_partido(ruta_resultados, i);
             }
 
+            System.out.println(" ");
             Ronda ronda = new Ronda(partidos);
-            int puntaje = ronda.obtener_puntaje(cantidad_partidos, pronosticos);
-
-            System.out.println("\nCargando...");
-            try {
-                Thread.sleep(3000);
-            } catch (InterruptedException e) {
-                throw new RuntimeException(e);
-            }
+            int puntaje = ronda.ResultadoEnum(pronosticos);
             System.out.println("Puntaje obtenido --> " + puntaje);
-
         }
 
         System.out.println("\nHasta luego!");
     }
 }
-//Deberíamos controlar que la cantidad de pronosticos coincida con la cantidad de partidos?
-//Deberíamos controlar la cantidad de datos en los archivos?
