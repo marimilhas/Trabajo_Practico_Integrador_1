@@ -2,6 +2,7 @@ public class Partido {
 
     private Equipo equipo1;
     private Equipo equipo2;
+
     private int golesEquipo1;
     private int golesEquipo2;
 
@@ -21,6 +22,14 @@ public class Partido {
 
     public void setGolesEquipo2(int golesEquipo2) {
         this.golesEquipo2 = golesEquipo2;
+    }
+
+    public int getGolesEquipo1() {
+        return golesEquipo1;
+    }
+
+    public int getGolesEquipo2() {
+        return golesEquipo2;
     }
 
     //Aún falta implementar el método resultado..

@@ -4,34 +4,25 @@ import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Ronda {
-    String nro;
-    Partido partidos;
-
-    public Ronda(Partido partidos) throws IOException {
-        this.partidos = partidos;
-    }
-
-    public void setGoles(int goles1, int goles2){
-        partidos.setGolesEquipo1(goles1);
-        partidos.setGolesEquipo2(goles2);
-    }
-
-
-    public int puntos(String deEquipo, int cualEquipo) throws IOException {
+public class ObtenerNombreEquipos {
+    //Funciones para obtener el nombre de los equipos como un String
+    public String equipos(String deEquipo, int cualEquipo) throws IOException {
 
         int i = 0;
-        char resultadoEquipo = 't';
+        String resultadoEquipo = "";
         boolean finalizar = false;
 
         if (deEquipo == "equipo1" && cualEquipo == 1) {
             String equipo1 = this.buscarResultado("equipo1");
 
             while (i < equipo1.length() && finalizar == false){
-                if (equipo1.charAt(i) == ';' && (equipo1.charAt(i+1) >= '0' &&  equipo1.charAt(i+1) <= '9')) {
-                    resultadoEquipo = equipo1.charAt(i+1);
+                if (equipo1.charAt(i) != ';'){
+                    resultadoEquipo += equipo1.charAt(i);
+                }
+                else{
                     finalizar = true;
                 }
+
                 i++;
             }
 
@@ -39,11 +30,14 @@ public class Ronda {
 
         else if (deEquipo == "equipo1" && cualEquipo == 2) {
             String equipo1 = this.buscarResultado("equipo1");
+            int cont = 0;
 
             while (i < equipo1.length() && finalizar == false){
-                if (equipo1.charAt(i) == ';' && (equipo1.charAt(i+3) >= '0' &&  equipo1.charAt(i+3) <= '9')) {
-                    resultadoEquipo = equipo1.charAt(i+3);
-                    finalizar = true;
+                if (equipo1.charAt(i) == ';' && cont < 4){
+                    cont++;
+                }
+                else{
+                    resultadoEquipo += equipo1.charAt(i);
                 }
                 i++;
             }
@@ -54,9 +48,13 @@ public class Ronda {
             String equipo2 = this.buscarResultado("equipo2");
 
             while (i < equipo2.length() && finalizar == false){
-                if (equipo2.charAt(i) == ';' && (equipo2.charAt(i+1) >= '0' &&  equipo2.charAt(i+1) <= '9')) {
-                    resultadoEquipo = equipo2.charAt(i+1);
-                    finalizar = true;
+                if (!(equipo2.charAt(i) >= '0' && equipo2.charAt(i) <= '9')) {
+                    if (equipo2.charAt(i) != ';'){
+                        resultadoEquipo += equipo2.charAt(i);
+                    }
+                    else{
+                        finalizar = true;
+                    }
                 }
                 i++;
             }
@@ -64,18 +62,21 @@ public class Ronda {
 
         else if (deEquipo == "equipo2" && cualEquipo == 2) {
             String equipo2 = this.buscarResultado("equipo2");
+            int cont = 0;
 
             while (i < equipo2.length() && finalizar == false){
-                if (equipo2.charAt(i) == ';' && (equipo2.charAt(i+3) >= '0' &&  equipo2.charAt(i+3) <= '9')) {
-                    resultadoEquipo = equipo2.charAt(i+3);
-                    finalizar = true;
+                if (equipo2.charAt(i) == ';' && cont < 3){
+                    cont++;
+                }
+                else{
+                    resultadoEquipo += equipo2.charAt(i);
                 }
                 i++;
             }
         }
 
 
-        return Character.getNumericValue(resultadoEquipo);
+        return resultadoEquipo;
     }
 
     public String buscarResultado(String deEquipo) throws IOException {
@@ -101,5 +102,5 @@ public class Ronda {
         }
 
     }
-
 }
+
